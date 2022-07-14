@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import List from './components/List/List'
+import Form from './components/Form/Form'
+import { Sub } from './types'
 
-interface Sub {
-  nick: string
-  avatar: string
-  subMonths: number
-  description?: string
-}
+/**
+ * ! @type {AppState} Esta es una interfaz de estado
+ */
 interface AppState {
   subs: Array<Sub>
 }
@@ -30,19 +30,8 @@ function App() {
   return (
     <div className="App">
       <h1>Subscribers</h1>
-      <ul>
-        {
-          subs.map(sub => {
-            return (
-              <li key={sub.nick}>
-                <img src={sub.avatar} alt={sub.avatar} />
-                <h4>{sub.nick} (<small>{sub.subMonths}</small>)</h4>
-                <p>{sub.description?.substring(0, 100)}</p>
-              </li>
-            )
-          })
-        }
-      </ul>
+      <List subs={subs}/>
+      <Form />
     </div>
   )
 }
